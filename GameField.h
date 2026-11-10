@@ -12,7 +12,7 @@ private:
     int height;
     size_t max_capacity;
     std::vector<std::unique_ptr<Unit>> units;
-    std::vector<std::string> action_log; // Журнал действий
+    std::vector<std::string> action_log;
 
 public:
     GameField(int w, int h, size_t max_cap);
@@ -26,14 +26,13 @@ public:
     bool add_unit(std::unique_ptr<Unit> unit);
     bool remove_dead_units();
 
-    // Изменено: теперь метод возвращает bool (удалось ли походить)
     bool move_unit_by_index(size_t index, COORD new_pos, std::string& error_msg);
 
     size_t get_units_count() const { return units.size(); }
     Unit& get_unit_by_index(size_t index) { return *units[index]; }
     const std::vector<std::unique_ptr<Unit>>& get_all_units() const { return units; }
 
-    void add_log(const std::string& message); // Метод добавления в журнал
+    void add_log(const std::string& message);
     void draw() const;
 
     class GameFieldIterator
